@@ -86,7 +86,14 @@ type Mutation {
  """
  // Calendar
  """ 
-  addCalendar(date: , ludi: Ludis): Calendar
+  addCalendar(date: Date, ludi: Ludis): Calendar
   updateCalendar(id: ID!, date: , ludi: Ludis, fight: [Calendar_infos]): Calendar
   deleteCalendar(id: ID!): Calendar 
+
+  """
+ // Gladiator
+ """ 
+  addGladiator(email: String, first_name: String, last_name: String, birthdate: Date, speed: Int, atk: Int, def: Int, dist_atk: Int): Gladiators
+  updateGladiator(id: ID!, email: String, first_name: String, last_name: String, birthdate: Date, speed: Int, atk: Int, def: Int, dist_atk: Int): Gladiators
+  deleteGladiator(id: ID!): Gladiators
 }
