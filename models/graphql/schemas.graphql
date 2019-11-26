@@ -1,0 +1,92 @@
+"""
+Définition des types de données
+"""
+type Weapons {
+  id: ID
+  label: String
+  speed: String
+  atk: Int
+  def: Int
+}
+
+type Emperors {
+  id: ID
+  email: String
+  first_name: String
+  last_name: String
+  token: String
+  birthdate: String
+}
+
+type Empires {
+  id: ID,
+  label: String,
+  population: Int,
+  emperor: Emperors
+}
+
+type Ludis {
+  id: ID,
+  label: String,
+  ludus_name: String,
+  ludus_fistname: String,
+  email: String,
+  empire: Empires
+}
+
+type Gladiator_type {
+  id: ID,
+  label: String,
+  speed: Int,
+  atk: Int,
+  def: Int,
+  dist_atk: Int,
+  weapons: weapons
+}
+
+type Gladiators {
+  id: ID,
+  email: String,
+  first_name: String,
+  last_name: String,
+  birthdate: Date,
+  type: Gladiator_type
+}
+
+type Calendar_infos {
+  gladiator: Gladiators,
+  gladiator_type: Gladiator_type,
+  weapon: Weapons
+}
+
+type Calendar {
+  id: ID,
+  date: Date,
+  ludi: Ludis,
+  hasAnimal: Boolean,
+  fight: [Calendar_infos]
+}
+
+"""
+Définition des prototypes des GET
+"""
+
+type Query {
+  Calendar(id: ID, date: , ludi: Ludis, gladiator_A: Gladiators, gladiator_B: Gladiators, animal: Gladiators, winner: Gladiators): [Calendar]
+  Gladiators(id: ID,  email: String,  first_name: String,  last_name: String, birthdate: Date, type: Gladiator_type): [Gladiators]
+  Gladiator_type(id: ID,  label: String,  speed: Int,  atk: Int,  def: Int,  dist_atk: Int,  weapons: weapons): [Gladiator_type]
+}
+
+
+"""
+Définition des prototypes des POST, UPDATE, DELETE
+"""
+
+type Mutation {
+ """
+ // Calendar
+ """ 
+  addCalendar(date: , ludi: Ludis): Calendar
+  updateCalendar(id: ID!, date: , ludi: Ludis, fight: [Calendar_infos]): Calendar
+  deleteCalendar(id: ID!): Calendar 
+}
