@@ -288,6 +288,7 @@ const deleteLudis = Ludi => {
 };
 
 module.exports = {
+  // QUERY
   // SELECT
   getGladiators,
   getCalendars,
@@ -298,6 +299,7 @@ module.exports = {
   getEmpires,
   getLudis,
 
+  // Mutation 
   // INSERT
   addGladiators,
   addCalendars,
