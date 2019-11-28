@@ -1,0 +1,119 @@
+"""
+Définition des types de données
+"""
+type Weapons {
+  id: ID
+  label: String
+  speed: String
+  atk: Int
+  def: Int
+}
+
+type Emperors {
+  id: ID
+  email: String
+  first_name: String
+  last_name: String
+  token: String
+  birthdate: String
+}
+
+type Empires {
+  id: ID,
+  label: String,
+  population: Int,
+  emperor: Emperors
+}
+
+type Ludis {
+  id: ID,
+  label: String,
+  ludus_name: String,
+  ludus_fistname: String,
+  email: String,
+  empire: Empires
+}
+
+type Gladiator_type {
+  id: ID,
+  label: String,
+  speed: Int,
+  atk: Int,
+  def: Int,
+  dist_atk: Int,
+  weapons: Weapons
+}
+
+type Gladiators {
+  id: ID,
+  email: String,
+  first_name: String,
+  last_name: String,
+  birthdate: String,
+  type: Gladiator_type
+}
+
+type Calendar_infos {
+  gladiator: Gladiators,
+  gladiator_type: Gladiator_type,
+  weapon: Weapons
+}
+
+type Calendar {
+  id: ID,
+  date: String,
+  ludi: Ludis,
+  hasAnimal: Boolean,
+  fight: [Calendar_infos]
+}
+
+"""
+Définition des prototypes des GET
+"""
+
+type Query {
+  getGladiators(id: ID): [Gladiators]
+  getCalendars(id: ID): [Calendar]
+  getGladiatorType(id: ID): [Gladiator_type]
+  getCalendarInfo(id: ID): [Calendar_infos]
+  getWeapons(id: ID): [Weapons]
+  getEmperors(id: ID): [Emperors]
+  getEmpires(id: ID): [Empires]
+  getLudis(id: ID): [Ludis]
+  
+}
+
+
+"""
+Définition des prototypes des POST, UPDATE, DELETE
+"""
+
+type Mutation {
+ 
+  " Add "
+  addGladiator: Gladiators
+  addCalendar: Calendar
+  addCalendarsInfo: Calendar_infos
+  addWeapon: Weapons
+  addEmperor: Emperors
+  addEmpire: Empires
+  addLudis: Ludis
+
+  " UPADTE "
+  updateGladiators: Gladiators
+  updateCalendars: Calendar
+  updateCalendarsInfo: Calendar_infos
+  updateWeapon: Weapons
+  updateEmperor: Emperors
+  updateEmpire: Empires
+  updateLudis: Ludis
+
+  " DELETE "
+  deleteGladiators: Gladiators
+  deleteCalendars: Calendar
+  deleteCalendarsInfo: Calendar_infos 
+  deleteWeapon: Weapons
+  deleteEmperor: Emperors
+  deleteEmpire: Empires
+  deleteLudis: Ludis
+}
