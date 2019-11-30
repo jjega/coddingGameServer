@@ -25,7 +25,7 @@ exports.seed = knex => {
           email: "emperor1@coding-game.fr",
           first_name: "Alexandre",
           last_name: "Maximus",
-          token: 50,
+          token: '4de6e54bc5953d82e1fb137d472ed852d0d49f4fa0a916a5ab06bb81528d78be',
           birthdate: moment("11/12/1980", "DD/MM/YYYY").toDate()
         },
         {
@@ -33,7 +33,7 @@ exports.seed = knex => {
           email: "emperor2@coding-game.fr",
           first_name: "Haïlé",
           last_name: "Sélassié",
-          token: 50,
+          token: '4de6e54bc5953d82e1fb137d472ed852d0d49f4fa0a916a5ab06bb81528d78be',
           birthdate: moment("11/12/1980", "DD/MM/YYYY").toDate()
         }
       ]);
@@ -60,7 +60,7 @@ exports.seed = knex => {
           ludus_name: "Paparazzi",
           ludus_fistname: "Romus",
           email: "Paparazzi@wwf.loc",
-          token: "",
+          token: "af38019cbf4ffc6197ad8a4231d4d4b85846d5eb23791818b037fb22b295bdee",
           empire_id: 1
         },
         {
@@ -69,7 +69,7 @@ exports.seed = knex => {
           ludus_name: "Paparazzi",
           ludus_fistname: "Romulus",
           email: "Paparazzi@wew.loc",
-          token: "",
+          token: "af38019cbf4ffc6197ad8a4231d4d4b85846d5eb23791818b037fb22b295bdee",
           empire_id: 1
         },
 

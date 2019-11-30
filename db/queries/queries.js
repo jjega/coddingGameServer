@@ -1,4 +1,7 @@
+const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 const knex = require("../connection");
+const { secret } = require("../../knexfile");
 
 // SELECT
 const getGladiators = filters => {
@@ -32,9 +35,40 @@ const getWeapons = filters => {
 };
 
 const getEmperors = filters => {
+  const { password } = filters;
+
+  if (password) {
+    filters['token'] = crypto.createHmac('sha256', secret).update(password).digest('hex');
+  }
+  
+  delete filters['password'];
+
   return knex("emperors")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .then(emperors => {
+
+      if (emperors.length) {
+
+        if (password) {
+          let jwtoken = jwt.sign(
+            { id: emperors[0].id, email: emperors[0].email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
+          );
+          
+          emperors[0]['token'] = jwtoken;
+        } else {
+          emperors.map(emperor => {
+            delete emperor['token'];
+          });
+        }
+
+        return emperors;
+      } else {
+        return null;
+      }
+    });
 };
 
 const getEmpires = filters => {
@@ -44,9 +78,39 @@ const getEmpires = filters => {
 };
 
 const getLudis = filters => {
+  const { password } = filters;
+
+  if (password) {
+    filters['token'] = crypto.createHmac('sha256', secret).update(password).digest('hex');
+    console.log('token', filters['token'])
+  }
+  
+  delete filters['password'];
+
   return knex("ludis")
     .select("*")
-    .where(filters);
+    .where(filters).then(ludis => {
+      if (ludis.length) {
+        if (password) {
+
+          let jwtoken = jwt.sign(
+            { id: ludis[0].id, email: ludis[0].email },
+            process.env.JWT_SECRET,
+            { expiresIn: '1d' }
+          );
+          
+          ludis[0]['token'] = jwtoken;
+        } else {
+          ludis.map(emperor => {
+            delete emperor['token'];
+          });
+        }
+
+        return ludis;
+      } else {
+        return null;
+      }
+    });
 };
 
 // INSERT

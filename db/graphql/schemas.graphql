@@ -15,6 +15,7 @@ type Emperors {
   first_name: String
   last_name: String
   token: String
+  password: String
   birthdate: String
 }
 
@@ -31,7 +32,9 @@ type Ludis {
   ludus_name: String,
   ludus_fistname: String,
   email: String,
-  empire: Empires
+  empire: Empires,
+  password: String,
+  token: String
 }
 
 type Gladiator_type {
@@ -77,10 +80,10 @@ type Query {
   getGladiatorType(id: ID): [Gladiator_type]
   getCalendarInfo(id: ID): [Calendar_infos]
   getWeapons(id: ID): [Weapons]
-  getEmperors(id: ID): [Emperors]
+  getEmperors(id: ID, email: String, password: String): [Emperors]
   getEmpires(id: ID): [Empires]
-  getLudis(id: ID): [Ludis]
-  
+  getLudis(id: ID, email: String, password: String): [Ludis]
+
 }
 
 

@@ -6,9 +6,11 @@
   "dependencies": {
     "apollo-server-express": "^2.5.0-rc.0",
     "body-parser": "^1.19.0",
+    "crypto": "^1.0.1",
     "express": "^4.17.1",
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.6",
+    "jsonwebtoken": "^8.5.1",
     "knex": "^0.20.2",
     "moment": "^2.24.0",
     "pg": "^7.14.0",
@@ -17,7 +19,7 @@
   "devDependencies": {},
   "scripts": {
     "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www",
+    "dev": "PORT=4000 JWT_SECRET=jegatest nodemon ./bin/www",
     "debug": "node %NODE_DEBUG_OPTION% ./bin/www"
   },
   "author": "Jonathan EGA",

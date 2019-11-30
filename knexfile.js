@@ -2,7 +2,7 @@
 const path = require('path');
 
 module.exports = {
-
+  secret: 'pulpCodingG4m3',
   development: {
     client: "pg",
     version: "7.14",
