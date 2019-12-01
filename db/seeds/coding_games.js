@@ -168,10 +168,10 @@ exports.seed = knex => {
         { id: 2, first_name: 'Zara', last_name: 'Souf', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 2, ludi_id: 1},
         { id: 3, first_name: 'Edoiurd', last_name: 'Dero', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 3, ludi_id: 1},
         { id: 4, first_name: 'Rohan', last_name: 'Diko', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 4, ludi_id: 1},
-        { id: 5, first_name: 'Tahar', last_name: 'Fouir', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 5, ludi_id: 1},
+        { id: 5, first_name: 'Rex', last_name: 'Gros croc', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 5, ludi_id: 1},
         { id: 6, first_name: 'Alexi', last_name: 'Qualao', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 1, ludi_id: 1},
         { id: 7, first_name: 'Zaira', last_name: 'Soufir', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 1, ludi_id: 1},
-        { id: 8, first_name: 'Edouard', last_name: 'Deromo', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 5, ludi_id: 1},
+        { id: 8, first_name: 'Cerf', last_name: 'Bambi', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 5, ludi_id: 1},
         { id: 9, first_name: 'Ronan', last_name: 'Dikoto', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 4, ludi_id: 1},
         { id: 10, first_name: 'Tajar', last_name: 'Fosuir', birthdate: moment("12/12/1978", "DD/MM/YYYY").toDate(), gladiator_type_id: 5, ludi_id: 1}
       ]);

@@ -108,7 +108,7 @@ type Mutation {
   " UPADTE "
   updateGladiators(id: ID!): Gladiators
   updateCalendars(id: ID!, date: String, ludi: ID, hasAnimal: Boolean, fight: [ID]): Calendar
-  updateCalendarsInfo(id: ID!, gladiator: ID,  gladiator_type: ID, weapon: ID): Calendar_infos
+  updateCalendarsInfo(id: ID!, calencdar: ID, gladiator: ID,  gladiator_type: ID, weapon: ID): Calendar_infos
   updateWeapon(id: ID!): Weapons
   updateEmperor(id: ID!): Emperors
   updateEmpire(id: ID!): Empires

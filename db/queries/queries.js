@@ -242,15 +242,15 @@ const updateCalendars = Calendars => {
 
 const updateCalendarsInfo = CalendarsInfo => {
   const tmpCalendarsInfo = {};
-
+console.log(CalendarsInfo);
   if (CalendarsInfo.calendar_id)
-    tmpCalendarsInfo.calendar_id = CalendarsInfo.calendar_id;
+    tmpCalendarsInfo.calendar_id = CalendarsInfo.calendar;
   if (CalendarsInfo.gladiator_id)
-    tmpCalendarsInfo.gladiator_id = CalendarsInfo.gladiator_id;
+    tmpCalendarsInfo.gladiator_id = CalendarsInfo.gladiator;
   if (CalendarsInfo.gladiator_type_id)
-    tmpCalendarsInfo.gladiator_type_id = CalendarsInfo.gladiator_type_id;
+    tmpCalendarsInfo.gladiator_type_id = CalendarsInfo.gladiator_type;
   if (CalendarsInfo.weapon_id)
-    tmpCalendarsInfo.weapon_id = CalendarsInfo.weapon_id;
+    tmpCalendarsInfo.weapon_id = CalendarsInfo.weapon;
 
   return knex("calendar_infos")
     .where("id", CalendarsInfo.id)
