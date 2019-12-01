@@ -78,11 +78,6 @@ const getEmperors = filters => {
 };
 
 const getEmpires = filters => {
-  console.log('SQL', knex("empires")
-  .select("*")
-  .where(filters)
-  .orderBy('id', 'desc')
-  .toString())
   return knex("empires")
     .select("*")
     .where(filters)
@@ -94,7 +89,6 @@ const getLudis = filters => {
 
   if (password) {
     filters['token'] = crypto.createHmac('sha256', secret).update(password).digest('hex');
-    console.log('token', filters['token'])
   }
   
   delete filters['password'];
@@ -154,7 +148,6 @@ const addCalendars = Calendars => {
 };
 
 const addCalendarsInfo = CalendarsInfo => {
-  console.log(CalendarsInfo);
   return knex("calendar_infos")
     .insert({
       calendar_id: CalendarsInfo.calendar,
