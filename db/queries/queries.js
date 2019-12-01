@@ -38,7 +38,13 @@ const getWeapons = filters => {
     .where(filters)
     .orderBy('id', 'desc');
 };
-
+const getGladiatorTypeWeapons = filters => {
+  return knex("weapons")
+  .innerJoin('gladiator_type_weapon', 'weapons.id', 'gladiator_type_weapon.weapon_id')
+  .select("*")
+  .where(filters)
+  .toString();
+};
 const getEmperors = filters => {
   const { password } = filters;
 
@@ -311,49 +317,53 @@ const updateLudis = Ludi => {
 // DELETE
 const deleteGladiators = Gladiator => {
   return knex("gladiators")
-    .where("id", Gladiator.id)
+    .where(Gladiator)
     .del()
     .returning("*");
 };
 
 const deleteCalendars = Calendars => {
   return knex("calendar")
-    .where("id", Calendars.id)
+    .where(Calendars)
     .del()
     .returning("*");
 };
 
 const deleteCalendarsInfo = CalendarsInfo => {
+  console.log(knex("calendar_infos")
+  .where("calendar_id", CalendarsInfo.calendar)
+  .del()
+  .toString());
   return knex("calendar_infos")
-    .where("id", CalendarsInfo.id)
+    .where("calendar_id", CalendarsInfo.calendar)
     .del()
     .returning("*");
 };
 
 const deleteWeapon = Weapon => {
   return knex("weapons")
-    .where("id", movWeaponie.id)
+    .where(movWeaponie)
     .del()
     .returning("*");
 };
 
 const deleteEmperor = Emperor => {
   return knex("emperors")
-    .where("id", Emperor.id)
+    .where(Emperor)
     .delm()
     .returning("*");
 };
 
 const deleteEmpire = Empire => {
   return knex("empires")
-    .where("id", empires.id)
+    .where(empires)
     .del()
     .returning("*");
 };
 
 const deleteLudis = Ludi => {
   return knex("ludis")
-    .where("id", Ludi.id)
+    .where(Ludi)
     .del()
     .returning("*");
 };
@@ -366,6 +376,7 @@ module.exports = {
   getGladiatorType,
   getCalendarInfo,
   getWeapons,
+  getGladiatorTypeWeapons,
   getEmperors,
   getEmpires,
   getLudis,

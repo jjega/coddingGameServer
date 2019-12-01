@@ -105,9 +105,7 @@ const schema = {
         return deleteCalendars[0];
       },
       deleteCalendarsInfo: async (_, calendarInfo) => {
-        const deleteCalendarsInfo = await queries.deleteCalendarsInfo(
-          calendar_info
-        );
+        const deleteCalendarsInfo = await queries.deleteCalendarsInfo(calendarInfo);
 
         return deleteCalendarsInfo[0];
       },
@@ -134,6 +132,18 @@ const schema = {
     },
 
     // Relationship
+    Gladiator_type: {
+      gladiators: async gladiator_type => {
+        const gladiators = await queries.getGladiators({gladiator_type_id: gladiator_type.id})
+
+        return gladiators.length ? gladiators : null;
+      },
+      weapons:  async gladiator_type => {
+        const weapons = await queries.getGladiatorTypeWeapons({gladiator_type_id: gladiator_type.id})
+
+        return weapons.length ? weapons : null;
+      },
+    },
     Empires: {
       emperor: async empire => {
         const emperor = await queries.getEmperors({ id: empire.emperor_id });

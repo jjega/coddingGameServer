@@ -45,7 +45,8 @@ type Gladiator_type {
   atk: Int,
   def: Int,
   dist_atk: Int,
-  weapons: Weapons
+  weapons: [Weapons],
+  gladiators: [Gladiators]
 }
 
 type Gladiators {
@@ -116,7 +117,7 @@ type Mutation {
   " DELETE "
   deleteGladiators: Gladiators
   deleteCalendars: Calendar
-  deleteCalendarsInfo: Calendar_infos 
+  deleteCalendarsInfo(id: ID, calendar: ID): Calendar_infos 
   deleteWeapon: Weapons
   deleteEmperor: Emperors
   deleteEmpire: Empires
