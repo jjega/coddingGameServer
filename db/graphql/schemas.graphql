@@ -23,7 +23,8 @@ type Empires {
   id: ID,
   label: String,
   population: Int,
-  emperor: Emperors
+  emperor: Emperors,
+  ludis: [Ludis]
 }
 
 type Ludis {
@@ -57,6 +58,7 @@ type Gladiators {
 }
 
 type Calendar_infos {
+  id: ID,
   gladiator: Gladiators,
   gladiator_type: Gladiator_type,
   weapon: Weapons
@@ -95,21 +97,21 @@ type Mutation {
  
   " Add "
   addGladiator: Gladiators
-  addCalendar: Calendar
-  addCalendarsInfo: Calendar_infos
+  addCalendar(date: String, ludi: ID, hasAnimal: Boolean, fight: [ID]): Calendar
+  addCalendarsInfo(calendar: ID, gladiator: ID, gladiator_type: ID, weapon: ID): Calendar_infos
   addWeapon: Weapons
   addEmperor: Emperors
   addEmpire: Empires
   addLudis: Ludis
 
   " UPADTE "
-  updateGladiators: Gladiators
-  updateCalendars: Calendar
-  updateCalendarsInfo: Calendar_infos
-  updateWeapon: Weapons
-  updateEmperor: Emperors
-  updateEmpire: Empires
-  updateLudis: Ludis
+  updateGladiators(id: ID!): Gladiators
+  updateCalendars(id: ID!, date: String, ludi: ID, hasAnimal: Boolean, fight: [ID]): Calendar
+  updateCalendarsInfo(id: ID!, gladiator: ID,  gladiator_type: ID, weapon: ID): Calendar_infos
+  updateWeapon(id: ID!): Weapons
+  updateEmperor(id: ID!): Emperors
+  updateEmpire(id: ID!): Empires
+  updateLudis(id: ID!): Ludis
 
   " DELETE "
   deleteGladiators: Gladiators

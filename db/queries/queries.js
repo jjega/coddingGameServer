@@ -7,31 +7,36 @@ const { secret } = require("../../knexfile");
 const getGladiators = filters => {
   return knex("gladiators")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .orderBy('id', 'desc');
 };
 
 const getCalendars = filters => {
   return knex("calendar")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .orderBy('id', 'desc');
 };
 
 const getGladiatorType = filters => {
   return knex("gladiator_type")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .orderBy('id', 'desc');
 };
 
 const getCalendarInfo = filters => {
   return knex("calendar_infos")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .orderBy('id', 'desc');
 };
 
 const getWeapons = filters => {
   return knex("weapons")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .orderBy('id', 'desc');
 };
 
 const getEmperors = filters => {
@@ -46,6 +51,7 @@ const getEmperors = filters => {
   return knex("emperors")
     .select("*")
     .where(filters)
+    .orderBy('id', 'desc')
     .then(emperors => {
 
       if (emperors.length) {
@@ -72,9 +78,15 @@ const getEmperors = filters => {
 };
 
 const getEmpires = filters => {
+  console.log('SQL', knex("empires")
+  .select("*")
+  .where(filters)
+  .orderBy('id', 'desc')
+  .toString())
   return knex("empires")
     .select("*")
-    .where(filters);
+    .where(filters)
+    .orderBy('id', 'desc');
 };
 
 const getLudis = filters => {
@@ -89,7 +101,8 @@ const getLudis = filters => {
 
   return knex("ludis")
     .select("*")
-    .where(filters).then(ludis => {
+    .where(filters)
+    .orderBy('id', 'desc').then(ludis => {
       if (ludis.length) {
         if (password) {
 
@@ -135,20 +148,21 @@ const addCalendars = Calendars => {
     .insert({
       date: Calendars.date,
       ludi_id: Calendars.ludi_id,
-      hasAnimal: Calendars.hasAnimal || "Iconnu"
+      hasAnimal: new Boolean(Calendars.hasAnimal) || false
     })
     .returning("*");
 };
 
 const addCalendarsInfo = CalendarsInfo => {
+  console.log(CalendarsInfo);
   return knex("calendar_infos")
     .insert({
-      calendar_id: CalendarsInfo.date,
-      gladiator_id: CalendarsInfo.ludi_id || null,
-      gladiator_type_id: CalendarsInfo.hasAnimal,
-      weapon_id: CalendarsInfo.hasAnimal || null
+      calendar_id: CalendarsInfo.calendar,
+      gladiator_id: CalendarsInfo.gladiator || null,
+      gladiator_type_id: CalendarsInfo.gladiator_type,
+      weapon_id: CalendarsInfo.weapon || null
     })
-    .returning("*");
+    .returning('*');
 };
 
 const addWeapon = Weapon => {
@@ -221,7 +235,7 @@ const updateCalendars = Calendars => {
   if (Calendars.ludi_id) tmpCalendars.ludi_id = Calendars.ludi_id;
   if (Calendars.hasAnimal) tmpCalendars.hasAnimal = Calendars.hasAnimal;
 
-  return knex("movies")
+  return knex("calendar")
     .where("id", Calendars.id)
     .update(tmpCalendars)
     .returning("*");
@@ -253,7 +267,7 @@ const updateWeapon = Weapon => {
   if (Weapon.atk) tmpWeapon.atk = Weapon.atk;
   if (Weapon.def) tmpWeapon.def = Weapon.def;
 
-  return knex("movies")
+  return knex("weapon")
     .where("id", movWeaponie.id)
     .update(tmpWeapon)
     .returning("*");
@@ -310,7 +324,7 @@ const deleteGladiators = Gladiator => {
 };
 
 const deleteCalendars = Calendars => {
-  return knex("movies")
+  return knex("calendar")
     .where("id", Calendars.id)
     .del()
     .returning("*");
@@ -324,7 +338,7 @@ const deleteCalendarsInfo = CalendarsInfo => {
 };
 
 const deleteWeapon = Weapon => {
-  return knex("movies")
+  return knex("weapons")
     .where("id", movWeaponie.id)
     .del()
     .returning("*");
