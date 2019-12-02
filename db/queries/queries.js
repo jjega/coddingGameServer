@@ -329,10 +329,6 @@ const deleteCalendars = Calendars => {
 };
 
 const deleteCalendarsInfo = CalendarsInfo => {
-  console.log(knex("calendar_infos")
-  .where("calendar_id", CalendarsInfo.calendar)
-  .del()
-  .toString());
   return knex("calendar_infos")
     .where("calendar_id", CalendarsInfo.calendar)
     .del()
