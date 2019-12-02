@@ -42,8 +42,7 @@ const getGladiatorTypeWeapons = filters => {
   return knex("weapons")
   .innerJoin('gladiator_type_weapon', 'weapons.id', 'gladiator_type_weapon.weapon_id')
   .select("*")
-  .where(filters)
-  .toString();
+  .where(filters);
 };
 const getEmperors = filters => {
   const { password } = filters;
